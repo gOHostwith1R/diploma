@@ -1,5 +1,7 @@
 import "./formAuth.styles.css";
 
-export const FormAuth = ({ children }) => {
-  return <div className="form__auth">{children}</div>;
-};
+export const FormAuth = ({ children, onSubmit }) => (
+  <form onSubmit={onSubmit} className="form__auth">
+    {children}
+  </form>
+);
