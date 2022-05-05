@@ -1,0 +1,10 @@
+.form__auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 320px;
+  height: 100%;
+  gap: 20px;
+}

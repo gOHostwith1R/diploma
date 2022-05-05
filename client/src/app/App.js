@@ -1,6 +1,7 @@
-import { useRouter } from "../hooks/useRouter";
+import { useRouter } from "../hooks";
+import "./app.styles.css";
 
 export const App = () => {
   const routes = useRouter();
-  return routes;
+  return <div className="app">{routes}</div>;
 };

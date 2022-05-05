@@ -1,0 +1,6 @@
+.auth__layouts {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  background-image: url("../../assets/background.jpg");
+}

@@ -1,8 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
-import { LoginPage } from "../pages/AuthPages/LoginPage";
-import { MainPage } from "../pages/MainPage/MainPage";
+import { LoginPage, MainPage } from "../pages";
 import { WithoutAuth } from "../hoc/WithoutAuth";
 import { RequireAuth } from "../hoc/RequireAuth";
 
