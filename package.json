@@ -1,0 +1,25 @@
+{
+  "name": "diploma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run start --prefix client",
+    "prepare": "husky install",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gOHostwith1R/diploma.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gOHostwith1R/diploma/issues"
+  },
+  "homepage": "https://github.com/gOHostwith1R/diploma#readme",
+  "devDependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
