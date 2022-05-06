@@ -6,4 +6,12 @@ export const apiAuth = {
       userName,
       password,
     }),
+  apiAuthSignUp: (userName, password, firstName, lastName, age) =>
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/user/registration`, {
+      userName,
+      password,
+      firstName,
+      lastName,
+      age,
+    }),
 };
