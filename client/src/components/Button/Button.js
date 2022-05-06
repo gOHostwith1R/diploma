@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import "./button.styles.css";
 
 export const Button = ({ children, type, classType }) => (
   <button

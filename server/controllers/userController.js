@@ -1,20 +1,19 @@
-const { User } = require('../models/models');
-const bcrypt = require('bcrypt');
-const ApiError = require('../error/ApiError');
-const { validationResult } = require('express-validator');
-const TokenService = require('../service/TokenService');
+const { User } = require("../models/models");
+const bcrypt = require("bcrypt");
+const ApiError = require("../error/ApiError");
+const { validationResult } = require("express-validator");
+const TokenService = require("../service/TokenService");
 class UserController {
   async registration(req, res, next) {
     try {
-      const { userName, password, firstName, lastName, age } =
-        req.body;
+      const { userName, password, firstName, lastName, age } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return next(ApiError.badRequest(errors.errors));
       }
       const candidate = await User.findOne({ where: { userName } });
       if (candidate) {
-        return next(ApiError.userExists('User such exists'));
+        return next(ApiError.userExists("User such exists"));
       }
       const hashPassword = await bcrypt.hash(password, 5);
       const user = await User.create({
@@ -29,7 +28,7 @@ class UserController {
         userName: user.userName,
         firstName: user.firstName,
       });
-      res.cookie('refreshToken', tokens.refreshToken, {
+      res.cookie("refreshToken", tokens.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });
@@ -41,22 +40,22 @@ class UserController {
   async login(req, res, next) {
     try {
       const { userName, password } = req.body;
-      if(!userName && !password ) {
-        return next(ApiError.badRequest('Fields are empty'));
+      if (!userName && !password) {
+        return next(ApiError.badRequest("Fields are empty"));
       }
       const user = await User.findOne({ where: { userName } });
       if (!user) {
-        return next(ApiError.badRequest('User Name or password incorrect'));
+        return next(ApiError.badRequest("User Name or password incorrect"));
       }
       const isCorrectPassword = await bcrypt.compare(password, user.password);
       if (!isCorrectPassword) {
-        return next(ApiError.badRequest('User Name or password incorrect'));
+        return next(ApiError.badRequest("User Name or password incorrect"));
       }
       const tokens = TokenService.generateToken({
         userName: user.userName,
         firstName: user.firstName,
       });
-      res.cookie('refreshToken', tokens.refreshToken, {
+      res.cookie("refreshToken", tokens.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });
@@ -69,11 +68,11 @@ class UserController {
     try {
       const { refreshToken } = req.cookies;
       if (!refreshToken) {
-        return next(ApiError.unauthorizedError('Unauthorized'));
+        return next(ApiError.unauthorizedError("Unauthorized"));
       }
       const checkRefreshToken = TokenService.validateRefreshToken(refreshToken);
-      if(!checkRefreshToken) {
-        return next(ApiError.unauthorizedError('Unauthorized'));
+      if (!checkRefreshToken) {
+        return next(ApiError.unauthorizedError("Unauthorized"));
       }
       const userData = TokenService.decodeRefreshToken(refreshToken);
       const tokens = TokenService.generateToken({
@@ -81,7 +80,7 @@ class UserController {
         firstName: userData.firstName,
       });
 
-      res.cookie('refreshToken', tokens.refreshToken, {
+      res.cookie("refreshToken", tokens.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });

@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
-import { LoginPage, MainPage } from "../pages";
+import { LoginPage, MainPage, SignUpPage } from "../pages";
 import { WithoutAuth } from "../hoc/WithoutAuth";
 import { RequireAuth } from "../hoc/RequireAuth";
 
@@ -14,6 +14,14 @@ export const useRouter = () => {
         element={
           <WithoutAuth isAuth={isAuth}>
             <LoginPage />
+          </WithoutAuth>
+        }
+      />
+      <Route
+        path="/sign-up"
+        element={
+          <WithoutAuth isAuth={isAuth}>
+            <SignUpPage />
           </WithoutAuth>
         }
       />

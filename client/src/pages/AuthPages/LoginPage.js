@@ -1,10 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
-import { Title, Input, Button } from "../../components";
-import { AuthLayouts, FormAuth } from "../../layouts";
+import { fetchLoginUser } from "../../redux/reducers/userSlice";
+import { Title, Input, Button, CustomLink, Errors } from "../../components";
+import { AuthLayouts, AuthNavigateWrapper, FormAuth } from "../../layouts";
 
 export const LoginPage = () => {
-  const { control, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const errors = useSelector((state) => state.user.errors);
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      userName: "",
+      password: "",
+    },
+  });
+  const onSubmit = (data) => dispatch(fetchLoginUser(data));
   return (
     <AuthLayouts>
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
@@ -12,18 +21,37 @@ export const LoginPage = () => {
         <Controller
           name="userName"
           control={control}
+          rules={{ required: true }}
           render={({ field: { ref, onChange } }) => (
             <Input
               inputRef={ref}
               onChange={onChange}
               placeholder="Enter the user name"
-              type="auth"
             />
           )}
         />
-        <Button type="submit" classType="auth__button">
-          Login
-        </Button>
+        <div>
+          <Controller
+            name="password"
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { ref, onChange } }) => (
+              <Input
+                inputRef={ref}
+                onChange={onChange}
+                placeholder="Enter the password"
+                type="password"
+              />
+            )}
+          />
+          {errors && <Errors>{errors}</Errors>}
+        </div>
+        <AuthNavigateWrapper>
+          <Button type="submit" classType="auth__button">
+            Login
+          </Button>
+          <CustomLink path="/sign-up">Sign Up</CustomLink>
+        </AuthNavigateWrapper>
       </FormAuth>
     </AuthLayouts>
   );
