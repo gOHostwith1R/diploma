@@ -27,25 +27,14 @@ export const CreateTask = () => {
       <Title>Create task</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputWrapper>
-          <Controller
-            name="title"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <Input
-                onChange={onChange}
-                placeholder="Enter a title for task"
-              />
-            )}
-          />
+          <Input control={control} placeholder="Enter the title" name="title" />
           {errors?.task && <Errors>Title is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Controller
+          <TextArea
+            placeholder="Description"
             name="description"
             control={control}
-            render={({ field: { onChange } }) => (
-              <TextArea onChange={onChange} placeholder="Description" />
-            )}
           />
           {errors?.task && <Errors>Title is incorrect</Errors>}
         </InputWrapper>

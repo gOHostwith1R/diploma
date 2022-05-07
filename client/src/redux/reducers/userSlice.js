@@ -36,7 +36,8 @@ export const fetchSignUpUser = createAsyncThunk(
 const initialState = {
   userName: "",
   status: "",
-  errors: null,
+  errorsLogin: null,
+  errorsSignUp: null,
   role: "",
   isAuth: !!localStorage.getItem("access"),
 };
@@ -44,7 +45,11 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    clearErrors(state) {
+      state.errors = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchLoginUser.pending, (state) => {
       state.status = "pending";
@@ -58,7 +63,7 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchLoginUser.rejected, (state, { payload }) => {
       state.status = "rejected";
-      state.errors = payload.message;
+      state.errorsLogin = payload.message;
     });
     builder.addCase(fetchSignUpUser.pending, (state) => {
       state.status = "pending";
@@ -72,9 +77,11 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchSignUpUser.rejected, (state, { payload }) => {
       state.status = "rejected";
-      state.errors = payload.message;
+      state.errorsSignUp = payload.message;
     });
   },
 });
 
 export default userSlice.reducer;
+
+export const { clearErrors } = userSlice.actions;

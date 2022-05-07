@@ -1,6 +1,6 @@
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSignUpUser } from "../../redux/reducers/userSlice";
+import { fetchSignUpUser, clearErrors } from "../../redux/reducers/userSlice";
 import { Title, Input, Button, CustomLink, Errors } from "../../components";
 import {
   AuthLayouts,
@@ -20,7 +20,7 @@ export const SignUpPage = () => {
       age: "",
     },
   });
-  const errors = useSelector((state) => state.user.errors)?.reduce(
+  const errors = useSelector((state) => state.user.errorsSignUp)?.reduce(
     (obj, item) => {
       obj[item.msg] = item.msg;
       obj[item.param] = item.param;
@@ -34,57 +34,40 @@ export const SignUpPage = () => {
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
         <Title type="title__auth">Sign Up</Title>
         <InputWrapper>
-          <Controller
-            name="userName"
+          <Input
             control={control}
-            render={({ field: { onChange } }) => (
-              <Input onChange={onChange} placeholder="Enter the user name" />
-            )}
+            placeholder="Enter the user name"
+            name="userName"
           />
           {errors?.userName && <Errors>User name is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Controller
-            name="password"
+          <Input
             control={control}
-            render={({ field: { onChange } }) => (
-              <Input
-                onChange={onChange}
-                placeholder="Enter the password"
-                type="password"
-              />
-            )}
+            placeholder="Enter the password"
+            name="password"
+            type="password"
           />
           {errors?.password && <Errors>Password is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Controller
-            name="firstName"
+          <Input
             control={control}
-            render={({ field: { onChange } }) => (
-              <Input onChange={onChange} placeholder="Enter the first name" />
-            )}
+            placeholder="Enter the first name"
+            name="firstName"
           />
           {errors?.firstName && <Errors>First name is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Controller
-            name="lastName"
+          <Input
             control={control}
-            render={({ field: { onChange } }) => (
-              <Input onChange={onChange} placeholder="Enter the last name" />
-            )}
+            placeholder="Enter the last name"
+            name="lastName"
           />
           {errors?.lastName && <Errors>Last name is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Controller
-            name="age"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <Input onChange={onChange} placeholder="Enter the age" />
-            )}
-          />
+          <Input control={control} placeholder="Enter the age" name="age" />
           {errors?.age && <Errors>Age is incorrect</Errors>}
         </InputWrapper>
         <AuthNavigateWrapper>

@@ -1,12 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Controller, useForm } from "react-hook-form";
-import { fetchLoginUser } from "../../redux/reducers/userSlice";
+import { useForm } from "react-hook-form";
+import { clearErrors, fetchLoginUser } from "../../redux/reducers/userSlice";
 import { Title, Input, Button, CustomLink, Errors } from "../../components";
-import { AuthLayouts, AuthNavigateWrapper, FormAuth } from "../../layouts";
+import {
+  AuthLayouts,
+  AuthNavigateWrapper,
+  FormAuth,
+  InputWrapper,
+} from "../../layouts";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
-  const errors = useSelector((state) => state.user.errors);
+  const errors = useSelector((state) => state.user.errorsLogin);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       userName: "",
@@ -18,29 +23,20 @@ export const LoginPage = () => {
     <AuthLayouts>
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
         <Title type="title__auth">Login</Title>
-        <Controller
-          name="userName"
+        <Input
           control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange } }) => (
-            <Input onChange={onChange} placeholder="Enter the user name" />
-          )}
+          placeholder="Enter the user name"
+          name="userName"
         />
-        <div>
-          <Controller
-            name="password"
+        <InputWrapper>
+          <Input
             control={control}
-            rules={{ required: true }}
-            render={({ field: { onChange } }) => (
-              <Input
-                onChange={onChange}
-                placeholder="Enter the password"
-                type="password"
-              />
-            )}
+            placeholder="Enter the password"
+            name="password"
+            type="password"
           />
           {errors && <Errors>{errors}</Errors>}
-        </div>
+        </InputWrapper>
         <AuthNavigateWrapper>
           <Button type="submit" classType="auth__button">
             Login
