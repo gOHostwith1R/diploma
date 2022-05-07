@@ -22,12 +22,8 @@ export const LoginPage = () => {
           name="userName"
           control={control}
           rules={{ required: true }}
-          render={({ field: { ref, onChange } }) => (
-            <Input
-              inputRef={ref}
-              onChange={onChange}
-              placeholder="Enter the user name"
-            />
+          render={({ field: { onChange } }) => (
+            <Input onChange={onChange} placeholder="Enter the user name" />
           )}
         />
         <div>
@@ -35,9 +31,8 @@ export const LoginPage = () => {
             name="password"
             control={control}
             rules={{ required: true }}
-            render={({ field: { ref, onChange } }) => (
+            render={({ field: { onChange } }) => (
               <Input
-                inputRef={ref}
                 onChange={onChange}
                 placeholder="Enter the password"
                 type="password"

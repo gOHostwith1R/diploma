@@ -37,12 +37,8 @@ export const SignUpPage = () => {
           <Controller
             name="userName"
             control={control}
-            render={({ field: { ref, onChange } }) => (
-              <Input
-                inputRef={ref}
-                onChange={onChange}
-                placeholder="Enter the user name"
-              />
+            render={({ field: { onChange } }) => (
+              <Input onChange={onChange} placeholder="Enter the user name" />
             )}
           />
           {errors?.userName && <Errors>User name is incorrect</Errors>}
@@ -51,9 +47,8 @@ export const SignUpPage = () => {
           <Controller
             name="password"
             control={control}
-            render={({ field: { ref, onChange } }) => (
+            render={({ field: { onChange } }) => (
               <Input
-                inputRef={ref}
                 onChange={onChange}
                 placeholder="Enter the password"
                 type="password"
@@ -66,12 +61,8 @@ export const SignUpPage = () => {
           <Controller
             name="firstName"
             control={control}
-            render={({ field: { ref, onChange } }) => (
-              <Input
-                inputRef={ref}
-                onChange={onChange}
-                placeholder="Enter the first name"
-              />
+            render={({ field: { onChange } }) => (
+              <Input onChange={onChange} placeholder="Enter the first name" />
             )}
           />
           {errors?.firstName && <Errors>First name is incorrect</Errors>}
@@ -80,12 +71,8 @@ export const SignUpPage = () => {
           <Controller
             name="lastName"
             control={control}
-            render={({ field: { ref, onChange } }) => (
-              <Input
-                inputRef={ref}
-                onChange={onChange}
-                placeholder="Enter the last name"
-              />
+            render={({ field: { onChange } }) => (
+              <Input onChange={onChange} placeholder="Enter the last name" />
             )}
           />
           {errors?.lastName && <Errors>Last name is incorrect</Errors>}
@@ -94,12 +81,8 @@ export const SignUpPage = () => {
           <Controller
             name="age"
             control={control}
-            render={({ field: { ref, onChange } }) => (
-              <Input
-                inputRef={ref}
-                onChange={onChange}
-                placeholder="Enter the age"
-              />
+            render={({ field: { onChange } }) => (
+              <Input onChange={onChange} placeholder="Enter the age" />
             )}
           />
           {errors?.age && <Errors>Age is incorrect</Errors>}

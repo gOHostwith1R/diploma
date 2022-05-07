@@ -1,9 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
-import { LoginPage, MainPage, SignUpPage } from "../pages";
+import { CreateTask, LoginPage, MainPage, Profile, SignUpPage } from "../pages";
 import { WithoutAuth } from "../hoc/WithoutAuth";
 import { RequireAuth } from "../hoc/RequireAuth";
+import { Header } from "../layouts";
 
 export const useRouter = () => {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -29,7 +30,32 @@ export const useRouter = () => {
         path="/"
         element={
           <RequireAuth isAuth={isAuth}>
-            <MainPage />
+            <>
+              <Header />
+              <MainPage />
+            </>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/create"
+        element={
+          <RequireAuth isAuth={isAuth}>
+            <>
+              <Header />
+              <CreateTask />
+            </>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <RequireAuth isAuth={isAuth}>
+            <>
+              <Header />
+              <Profile />
+            </>
           </RequireAuth>
         }
       />

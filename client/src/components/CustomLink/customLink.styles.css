@@ -2,3 +2,15 @@
   font-size: 18px;
   text-decoration: none;
 }
+
+.header__link {
+  color: #312e2e;
+}
+
+.header__link:hover {
+  color: black;
+}
+
+.active__link {
+  color: #f8f8f8;
+}
