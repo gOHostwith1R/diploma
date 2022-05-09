@@ -45,11 +45,7 @@ const initialState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    clearErrors(state) {
-      state.errors = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchLoginUser.pending, (state) => {
       state.status = "pending";

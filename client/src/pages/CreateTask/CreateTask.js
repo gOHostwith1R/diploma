@@ -1,6 +1,13 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Title, Input, Errors, Button, TextArea } from "../../components";
+import {
+  Title,
+  Input,
+  Errors,
+  Button,
+  TextArea,
+  Select,
+} from "../../components";
 import { InputWrapper } from "../../layouts";
 import "./createTask.styles.css";
 
@@ -10,6 +17,7 @@ export const CreateTask = () => {
     defaultValues: {
       title: "",
       description: "",
+      type: "",
     },
   });
   const errors = useSelector((state) => state.user.errors)?.reduce(
@@ -25,7 +33,7 @@ export const CreateTask = () => {
   return (
     <div className="create-task__wrapper">
       <Title>Create task</Title>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="create__form">
         <InputWrapper>
           <Input control={control} placeholder="Enter the title" name="title" />
           {errors?.task && <Errors>Title is incorrect</Errors>}
@@ -38,7 +46,11 @@ export const CreateTask = () => {
           />
           {errors?.task && <Errors>Title is incorrect</Errors>}
         </InputWrapper>
-        <Button type="submit">Create</Button>
+        <InputWrapper>
+          <Title type="title__create">Enter the type </Title>
+          <Select control={control} name="type" />
+        </InputWrapper>
+        <Button type="submit" classType="create__button">Create</Button>
       </form>
     </div>
   );

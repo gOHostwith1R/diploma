@@ -1,7 +1,7 @@
-const sequelize = require('../db');
-const { DataTypes } = require('sequelize');
+const sequelize = require("../db");
+const { DataTypes } = require("sequelize");
 
-const User = sequelize.define('user', {
+const User = sequelize.define("user", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   userName: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
@@ -10,6 +10,14 @@ const User = sequelize.define('user', {
   age: { type: DataTypes.INTEGER },
 });
 
+const Task = sequelize.define("task", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  title: { type: DataTypes.STRING },
+  description: { type: DataTypes.STRING },
+  type: { type: DataTypes.STRING },
+});
+
 module.exports = {
   User,
+  Task,
 };

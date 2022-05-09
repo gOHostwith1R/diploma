@@ -4,5 +4,6 @@ import { Button } from "./Button/Button";
 import { CustomLink } from "./CustomLink/CustomLink";
 import { Errors } from "./Errors/Errors";
 import { TextArea } from "./TextArea/TextArea";
+import { Select } from "./Select/Select";
 
-export { Title, Input, Button, CustomLink, Errors, TextArea };
+export { Title, Input, Button, CustomLink, Errors, TextArea, Select };
