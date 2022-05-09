@@ -1,5 +1,6 @@
-import { Controller, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Title,
   Input,
@@ -8,10 +9,12 @@ import {
   TextArea,
   Select,
 } from "../../components";
+import { createTask } from "../../redux/reducers/taskSlice";
 import { InputWrapper } from "../../layouts";
 import "./createTask.styles.css";
 
 export const CreateTask = () => {
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -20,23 +23,17 @@ export const CreateTask = () => {
       type: "",
     },
   });
-  const errors = useSelector((state) => state.user.errors)?.reduce(
-    (obj, item) => {
-      obj[item.msg] = item.msg;
-      obj[item.param] = item.param;
-      return obj;
-    },
-    {}
-  );
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    dispatch(createTask(data));
+    return navigate("/");
+  };
   return (
     <div className="create-task__wrapper">
       <Title>Create task</Title>
       <form onSubmit={handleSubmit(onSubmit)} className="create__form">
         <InputWrapper>
           <Input control={control} placeholder="Enter the title" name="title" />
-          {errors?.task && <Errors>Title is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
           <TextArea
@@ -44,13 +41,14 @@ export const CreateTask = () => {
             name="description"
             control={control}
           />
-          {errors?.task && <Errors>Title is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
           <Title type="title__create">Enter the type </Title>
           <Select control={control} name="type" />
         </InputWrapper>
-        <Button type="submit" classType="create__button">Create</Button>
+        <Button type="submit" classType="create__button">
+          Create
+        </Button>
       </form>
     </div>
   );
