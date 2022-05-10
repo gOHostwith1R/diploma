@@ -1,13 +1,13 @@
-import { Header } from "../../layouts";
-import { CustomLink } from "../../components";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { TaskWrapper } from "../../layouts";
 import { fetchTasks } from "../../redux/reducers/taskSlice";
 
 export const MainPage = () => {
   const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.task.tasks);
   useEffect(() => {
-    dispatch(fetchTasks());
+    tasks.length === 0 && dispatch(fetchTasks());
   }, []);
-  return <h1>Main</h1>;
+  return <TaskWrapper />;
 };

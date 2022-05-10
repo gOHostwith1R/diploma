@@ -8,3 +8,7 @@
   background-color: #f7ebeb;
   resize: none;
 }
+
+.textarea:focus {
+  border: 2px solid blue;
+}

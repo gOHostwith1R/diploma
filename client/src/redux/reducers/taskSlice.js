@@ -52,7 +52,6 @@ const taskSLice = createSlice({
     });
     builder.addCase(fetchTasks.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
-      console.log(payload);
       state.tasks = payload;
     });
     builder.addCase(fetchTasks.rejected, (state, { payload }) => {

@@ -1,0 +1,6 @@
+.task-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 5px 25px;
+  flex-wrap: wrap;
+}

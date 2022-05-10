@@ -1,7 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
-import { CreateTask, LoginPage, MainPage, Profile, SignUpPage } from "../pages";
+import {
+  CreateTask,
+  LoginPage,
+  MainPage,
+  Profile,
+  SignUpPage,
+  TaskPage,
+} from "../pages";
 import { WithoutAuth } from "../hoc/WithoutAuth";
 import { RequireAuth } from "../hoc/RequireAuth";
 import { Header } from "../layouts";
@@ -55,6 +62,17 @@ export const useRouter = () => {
             <>
               <Header />
               <Profile />
+            </>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/task/:id"
+        element={
+          <RequireAuth isAuth={isAuth}>
+            <>
+              <Header />
+              <TaskPage />
             </>
           </RequireAuth>
         }
