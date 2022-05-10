@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useForm } from "react-hook-form";
 import { Title, Paragraph, TextArea, Button } from "../../components";
-import { fetchTasks } from "../../redux/reducers/taskSlice";
+import { fetchTasks, addAnswer } from "../../redux/reducers/taskSlice";
 import "./taskPage.styles.css";
 
 export const TaskPage = () => {
@@ -20,7 +20,10 @@ export const TaskPage = () => {
   useEffect(() => {
     task === undefined && dispatch(fetchTasks());
   }, []);
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    data["id"] = id;
+    dispatch(addAnswer(data));
+  };
   return (
     <div className="task-page">
       <div className="question__wrapper">

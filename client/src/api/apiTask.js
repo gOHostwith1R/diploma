@@ -9,4 +9,9 @@ export const apiTask = {
     }),
   apiFetchTasks: () =>
     axios.get(`${process.env.REACT_APP_SERVER_URL}task/all-task`),
+  apiAddAnswer: (answer, id) =>
+    axios.post(`${process.env.REACT_APP_SERVER_URL}task/add-answer`, {
+      answer,
+      id,
+    }),
 };

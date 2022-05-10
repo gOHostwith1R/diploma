@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, isAnyOf } from "@reduxjs/toolkit";
 import { apiTask } from "../../api/apiTask";
 
 export const createTask = createAsyncThunk(
@@ -26,6 +26,19 @@ export const fetchTasks = createAsyncThunk(
   }
 );
 
+export const addAnswer = createAsyncThunk(
+  "task/add-answer",
+  async (data, { rejectWithValue }) => {
+    const { answer, id } = data;
+    try {
+      const response = await apiTask.apiAddAnswer(answer, id);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   status: "",
   errors: null,
@@ -37,18 +50,14 @@ const taskSLice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(createTask.pending, (state) => {
-      state.status = "pending";
-    });
+    builder.addCase(
+      isAnyOf(createTask.pending, fetchTasks.pending, addAnswer.pending),
+      (state) => {
+        state.status = "pending";
+      }
+    );
     builder.addCase(createTask.fulfilled, (state) => {
       state.status = "fulfilled";
-    });
-    builder.addCase(createTask.rejected, (state, { payload }) => {
-      state.status = "rejected";
-      state.errors = payload.message;
-    });
-    builder.addCase(fetchTasks.pending, (state) => {
-      state.status = "pending";
     });
     builder.addCase(fetchTasks.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
@@ -56,7 +65,15 @@ const taskSLice = createSlice({
     });
     builder.addCase(fetchTasks.rejected, (state, { payload }) => {
       state.status = "rejected";
-      //state.errors = payload.message;
+      state.errors = payload.message;
+    });
+    builder.addCase(createTask.rejected, (state, { payload }) => {
+      state.status = "rejected";
+      state.errors = payload.message;
+    });
+    builder.addCase(addAnswer.rejected, (state, { payload }) => {
+      state.status = "rejected";
+      state.errors = payload.message;
     });
   },
 });
