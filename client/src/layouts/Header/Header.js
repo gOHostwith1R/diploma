@@ -9,8 +9,5 @@ export const Header = () => (
     <CustomLink path="/create" classType="header__link">
       Create Task
     </CustomLink>
-    <CustomLink path="/profile" classType="header__link">
-      Profile
-    </CustomLink>
   </header>
 );

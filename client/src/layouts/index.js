@@ -5,6 +5,8 @@ import { InputWrapper } from "./InputWrapper/InputWrapper";
 import { Header } from "./Header/Header";
 import { TaskWrapper } from "./TaskWrapper/TaskWrapper";
 import { Task } from "./Task/Task";
+import { Answer } from "./Answer/Answer";
+import { AnswerWrapper } from "./AnswerWrapper/AnswerWrapper";
 
 export {
   FormAuth,
@@ -14,4 +16,6 @@ export {
   Header,
   Task,
   TaskWrapper,
+  Answer,
+  AnswerWrapper,
 };

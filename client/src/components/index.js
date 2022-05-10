@@ -6,6 +6,7 @@ import { Errors } from "./Errors/Errors";
 import { TextArea } from "./TextArea/TextArea";
 import { Select } from "./Select/Select";
 import { Paragraph } from "./Paragraph/Paragraph";
+import { Loader } from "./Loader/Loader";
 
 export {
   Title,
@@ -16,4 +17,5 @@ export {
   TextArea,
   Select,
   Paragraph,
+  Loader,
 };

@@ -39,10 +39,23 @@ export const addAnswer = createAsyncThunk(
   }
 );
 
+export const fetchAnswers = createAsyncThunk(
+  "task/fetch-answers",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await apiTask.apiFetchAnswers(data);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   status: "",
   errors: null,
   tasks: [],
+  answers: [],
 };
 
 const taskSLice = createSlice({
@@ -50,18 +63,31 @@ const taskSLice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      isAnyOf(createTask.pending, fetchTasks.pending, addAnswer.pending),
-      (state) => {
-        state.status = "pending";
-      }
-    );
+    builder.addCase(createTask.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(fetchTasks.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(fetchAnswers.pending, (state) => {
+      state.status = "pending";
+    });
+    builder.addCase(addAnswer.pending, (state) => {
+      state.status = "pending";
+    });
     builder.addCase(createTask.fulfilled, (state) => {
       state.status = "fulfilled";
     });
     builder.addCase(fetchTasks.fulfilled, (state, { payload }) => {
       state.status = "fulfilled";
       state.tasks = payload;
+    });
+    builder.addCase(addAnswer.fulfilled, (state) => {
+      state.status = "fulfilled";
+    });
+    builder.addCase(fetchAnswers.fulfilled, (state, { payload }) => {
+      state.status = "fulfilled";
+      state.answers = payload;
     });
     builder.addCase(fetchTasks.rejected, (state, { payload }) => {
       state.status = "rejected";
@@ -72,6 +98,10 @@ const taskSLice = createSlice({
       state.errors = payload.message;
     });
     builder.addCase(addAnswer.rejected, (state, { payload }) => {
+      state.status = "rejected";
+      state.errors = payload.message;
+    });
+    builder.addCase(fetchAnswers.rejected, (state, { payload }) => {
       state.status = "rejected";
       state.errors = payload.message;
     });

@@ -14,4 +14,8 @@ export const apiTask = {
       answer,
       id,
     }),
+  apiFetchAnswers: (id) =>
+    axios.post(`${process.env.REACT_APP_SERVER_URL}task/answers`, {
+      id,
+    }),
 };

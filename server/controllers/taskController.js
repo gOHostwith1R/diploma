@@ -38,6 +38,7 @@ class TaskController {
     const { id: idTask } = req.body;
     try {
       const answers = await Answer.findAll({ where: { idTask } });
+      
       return res.json(answers);
     } catch (e) {
       next(e);
