@@ -1,5 +1,6 @@
 .task {
   width: 200px;
+  min-height: 150px;
   padding: 5px;
   background-color: rgb(150 142 225);
   cursor: pointer;
