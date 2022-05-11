@@ -1,13 +1,8 @@
 import { useForm } from "react-hook-form";
+import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {
-  Title,
-  Input,
-  Button,
-  TextArea,
-  Select,
-} from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { Title, Input, Button, TextArea, Select } from "../../components";
 import { createTask } from "../../redux/reducers/taskSlice";
 import { InputWrapper } from "../../layouts";
 import "./createTask.styles.css";
@@ -23,7 +18,10 @@ export const CreateTask = () => {
     },
   });
 
+  const userName = jwt_decode(localStorage.getItem("access")).userName;
+
   const onSubmit = (data) => {
+    data["userName"] = userName;
     dispatch(createTask(data));
     return navigate("/");
   };

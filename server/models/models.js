@@ -15,12 +15,14 @@ const Task = sequelize.define("task", {
   title: { type: DataTypes.STRING },
   description: { type: DataTypes.STRING },
   type: { type: DataTypes.STRING },
+  userName: { type: DataTypes.STRING },
 });
 
 const Answer = sequelize.define("answer", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   idTask: { type: DataTypes.INTEGER },
   answer: { type: DataTypes.STRING },
+  userName: {type: DataTypes.STRING},
 });
 
 module.exports = {

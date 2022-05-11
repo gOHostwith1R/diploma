@@ -13,6 +13,7 @@ export const TaskWrapper = () => {
           type={task.type}
           key={task.id}
           id={task.id}
+          userNameAnswer={task.userName}
         />
       ))}
     </div>

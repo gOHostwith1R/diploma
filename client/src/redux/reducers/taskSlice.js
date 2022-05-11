@@ -4,9 +4,14 @@ import { apiTask } from "../../api/apiTask";
 export const createTask = createAsyncThunk(
   "task/create-task",
   async (data, { rejectWithValue }) => {
-    const { title, description, type } = data;
+    const { title, description, type, userName } = data;
     try {
-      const response = await apiTask.apiTaskCreate(title, description, type);
+      const response = await apiTask.apiTaskCreate(
+        title,
+        description,
+        type,
+        userName
+      );
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -29,9 +34,9 @@ export const fetchTasks = createAsyncThunk(
 export const addAnswer = createAsyncThunk(
   "task/add-answer",
   async (data, { rejectWithValue }) => {
-    const { answer, id } = data;
+    const { answer, id, userName } = data;
     try {
-      const response = await apiTask.apiAddAnswer(answer, id);
+      const response = await apiTask.apiAddAnswer(answer, id, userName);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);

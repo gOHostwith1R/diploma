@@ -2,12 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useForm } from "react-hook-form";
+import jwt_decode from "jwt-decode";
 import { Title, Paragraph, TextArea, Button } from "../../components";
-import {
-  fetchTasks,
-  addAnswer,
-  fetchAnswers,
-} from "../../redux/reducers/taskSlice";
+import { fetchTasks, addAnswer } from "../../redux/reducers/taskSlice";
 import "./taskPage.styles.css";
 import { AnswerWrapper } from "../../layouts";
 
@@ -25,8 +22,10 @@ export const TaskPage = () => {
   useEffect(() => {
     task === undefined && dispatch(fetchTasks());
   }, []);
+  const userName = jwt_decode(localStorage.getItem("access")).userName;
   const onSubmit = (data) => {
     data["id"] = id;
+    data["userName"] = userName;
     dispatch(addAnswer(data));
   };
   return (

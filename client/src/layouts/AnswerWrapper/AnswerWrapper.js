@@ -17,7 +17,11 @@ export const AnswerWrapper = ({ id }) => {
   ) : (
     <div className="answer__wrapper">
       {answers.map((answer) => (
-        <Answer key={answer.id} answer={answer.answer} />
+        <Answer
+          key={answer.id}
+          answer={answer.answer}
+          userAnswer={answer.userName}
+        />
       ))}
     </div>
   );

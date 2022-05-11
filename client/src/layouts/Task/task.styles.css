@@ -9,3 +9,9 @@
   align-items: center;
   overflow-wrap: anywhere;
 }
+
+.asks__wrapper {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+}

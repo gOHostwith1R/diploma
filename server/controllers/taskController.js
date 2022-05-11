@@ -2,12 +2,13 @@ const { Task, Answer } = require("../models/models");
 
 class TaskController {
   async createTask(req, res, next) {
-    const { title, description, type } = req.body;
+    const { title, description, type, userName } = req.body;
     try {
       const task = await Task.create({
         title,
         description,
         type,
+        userName,
       });
       return res.json({ task });
     } catch (e) {
@@ -23,11 +24,12 @@ class TaskController {
     }
   }
   async addAnswer(req, res, next) {
-    const { id: idTask, answer } = req.body;
+    const { id: idTask, answer, userName } = req.body;
     try {
       const answerTask = await Answer.create({
         idTask,
         answer,
+        userName,
       });
       return res.json({ answerTask });
     } catch (e) {
@@ -38,7 +40,7 @@ class TaskController {
     const { id: idTask } = req.body;
     try {
       const answers = await Answer.findAll({ where: { idTask } });
-      
+
       return res.json(answers);
     } catch (e) {
       next(e);
