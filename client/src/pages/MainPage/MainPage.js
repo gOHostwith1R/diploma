@@ -8,6 +8,7 @@ import "./mainPage.styles.css";
 export const MainPage = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.task.tasks);
+  const searchTasks = useSelector((state) => state.task.currentTasks);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
   useEffect(() => {
@@ -16,7 +17,11 @@ export const MainPage = () => {
   const pageNumbers = Math.ceil(tasks.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentTasks = tasks.slice(indexOfFirstPost, indexOfLastPost);
+  const currentTasks =
+    searchTasks.length === 0
+      ? tasks.slice(indexOfFirstPost, indexOfLastPost)
+      : searchTasks.slice(indexOfFirstPost, indexOfLastPost);
+  //tasks.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <>
       <TaskWrapper currentTasks={currentTasks} />

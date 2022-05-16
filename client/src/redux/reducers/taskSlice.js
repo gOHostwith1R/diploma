@@ -61,12 +61,21 @@ const initialState = {
   errors: null,
   tasks: [],
   answers: [],
+  search: "",
+  currentTasks: [],
 };
 
 const taskSLice = createSlice({
   name: "task",
   initialState,
-  reducers: {},
+  reducers: {
+    searchTasks(state, { payload }) {
+      state.search = payload;
+      state.currentTasks = state.tasks.filter((task) =>
+        task.title.toLowerCase().includes(payload.toLowerCase())
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createTask.pending, (state) => {
       state.status = "pending";
@@ -112,5 +121,5 @@ const taskSLice = createSlice({
     });
   },
 });
-
+export const { searchTasks } = taskSLice.actions;
 export default taskSLice.reducer;
