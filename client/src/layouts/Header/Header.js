@@ -1,25 +1,9 @@
-import { useForm } from "react-hook-form";
-import { CustomLink, Input } from "../../components";
-import search from "../../assets/search.png";
+import { CustomLink, Input, Search } from "../../components";
 import "./header.styles.css";
-import { searchTasks } from "../../redux/reducers/taskSlice";
-import { useDispatch } from "react-redux";
+import { useLocation } from "react-router";
 
 export const Header = () => {
-  const dispatch = useDispatch();
-  const { control, getValues } = useForm({
-    defaultValues: {
-      search: "",
-    },
-  });
-  const onClick = () => {
-    dispatch(searchTasks(getValues("search")));
-  };
-  const onKeyPress = (e) => {
-    if (e.key === "Enter") {
-      dispatch(searchTasks(getValues("search")));
-    }
-  };
+  const location = useLocation();
   return (
     <header className="header">
       <div className="header__links-wrapper">
@@ -29,21 +13,11 @@ export const Header = () => {
         <CustomLink path="/create" classType="header__link">
           Create Task
         </CustomLink>
+        <CustomLink path="/profile" classType="header__link">
+          Profile
+        </CustomLink>
       </div>
-      <div className="search__wrapper">
-        <Input
-          placeholder="Search"
-          control={control}
-          name="search"
-          onKeyPress={onKeyPress}
-        />
-        <img
-          src={search}
-          alt="search"
-          className="search-icon"
-          onClick={onClick}
-        />
-      </div>
+      {location.pathname === "/" && <Search />}
     </header>
   );
 };

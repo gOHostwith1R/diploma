@@ -1,0 +1,12 @@
+.search__wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .search-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+  }
+  

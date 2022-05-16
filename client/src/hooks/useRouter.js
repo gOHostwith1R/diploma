@@ -5,6 +5,7 @@ import {
   CreateTask,
   LoginPage,
   MainPage,
+  Profile,
   SignUpPage,
   TaskPage,
 } from "../pages";
@@ -39,6 +40,17 @@ export const useRouter = () => {
             <>
               <Header />
               <MainPage />
+            </>
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <RequireAuth isAuth={isAuth}>
+            <>
+              <Header />
+              <Profile />
             </>
           </RequireAuth>
         }

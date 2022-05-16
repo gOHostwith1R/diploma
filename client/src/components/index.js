@@ -7,6 +7,7 @@ import { TextArea } from "./TextArea/TextArea";
 import { Select } from "./Select/Select";
 import { Paragraph } from "./Paragraph/Paragraph";
 import { Loader } from "./Loader/Loader";
+import { Search } from "./Search/Search";
 
 export {
   Title,
@@ -18,4 +19,5 @@ export {
   Select,
   Paragraph,
   Loader,
+  Search,
 };
