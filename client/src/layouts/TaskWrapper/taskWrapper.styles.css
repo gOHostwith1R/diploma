@@ -1,6 +1,7 @@
 .task-wrapper {
   display: flex;
   gap: 20px;
-  padding: 5px 25px;
+  padding: 15px 25px;
   flex-wrap: wrap;
+  flex-direction: column;
 }

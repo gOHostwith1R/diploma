@@ -1,13 +1,21 @@
 .task {
-  width: 200px;
-  min-height: 150px;
-  padding: 5px;
+  padding: 10px 20px;
   background-color: rgb(150 142 225);
   cursor: pointer;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   overflow-wrap: anywhere;
+}
+
+.task:hover {
+  background-color: rgb(50 30 243);
+}
+
+.task__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .asks__wrapper {

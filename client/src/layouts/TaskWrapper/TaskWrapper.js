@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
 import { Task } from "../Task/Task";
 import "./taskWrapper.styles.css";
 
-export const TaskWrapper = () => {
-  const tasks = useSelector((state) => state.task.tasks);
+export const TaskWrapper = ({ currentTasks }) => {
   return (
     <div className="task-wrapper">
-      {tasks.map((task) => (
+      {currentTasks.map((task) => (
         <Task
           title={task.title}
           description={task.description}

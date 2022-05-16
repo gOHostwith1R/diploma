@@ -5,9 +5,8 @@ import { Answer } from "../Answer/Answer";
 import { fetchAnswers } from "../../redux/reducers/taskSlice";
 import "./answerWrapper.styles.css";
 
-export const AnswerWrapper = ({ id }) => {
+export const AnswerWrapper = ({ id, answers }) => {
   const dispatch = useDispatch();
-  const answers = useSelector((state) => state.task.answers);
   const status = useSelector((state) => state.task.status);
   useEffect(() => {
     dispatch(fetchAnswers(id));

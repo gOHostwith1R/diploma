@@ -1,0 +1,8 @@
+.pagination__wrapper {
+  height: 100%;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}

@@ -10,8 +10,10 @@ export const Task = ({ title, type, id, userNameAnswer }) => {
   };
   return (
     <div className="task" onClick={() => handleClick(id)}>
-      <Title type="task__title">{title}</Title>
-      <Paragraph>{`Type: ${type}`}</Paragraph>
+      <div className="task__info">
+        <Title type="task__title">{title}</Title>
+        <Paragraph>{`Type: ${type}`}</Paragraph>
+      </div>
       <div className="asks__wrapper">
         <Paragraph>{`Asks: ${userNameAnswer}`}</Paragraph>
       </div>

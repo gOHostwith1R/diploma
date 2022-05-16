@@ -4,7 +4,11 @@ import { useParams } from "react-router";
 import { useForm } from "react-hook-form";
 import jwt_decode from "jwt-decode";
 import { Title, Paragraph, TextArea, Button } from "../../components";
-import { fetchTasks, addAnswer } from "../../redux/reducers/taskSlice";
+import {
+  fetchTasks,
+  addAnswer,
+  fetchAnswers,
+} from "../../redux/reducers/taskSlice";
 import "./taskPage.styles.css";
 import { AnswerWrapper } from "../../layouts";
 
@@ -19,14 +23,16 @@ export const TaskPage = () => {
   const task = useSelector((state) => state.task.tasks).find(
     (unit) => unit.id === +id
   );
+  const answers = useSelector((state) => state.task.answers);
   useEffect(() => {
     task === undefined && dispatch(fetchTasks());
   }, []);
   const userName = jwt_decode(localStorage.getItem("access")).userName;
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     data["id"] = id;
     data["userName"] = userName;
-    dispatch(addAnswer(data));
+    await dispatch(addAnswer(data));
+    await dispatch(fetchAnswers(id));
   };
   return (
     <div className="task-page">
@@ -35,7 +41,7 @@ export const TaskPage = () => {
         <Paragraph>{task?.description}</Paragraph>
         <Paragraph>{task?.type}</Paragraph>
       </div>
-      <AnswerWrapper id={id} />
+      <AnswerWrapper id={id} answers={answers} />
       <div className="answer__wrapper">
         <form onSubmit={handleSubmit(onSubmit)} className="form__answer">
           <TextArea
