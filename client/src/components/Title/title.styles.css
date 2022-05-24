@@ -15,3 +15,12 @@
   margin-top: 15px;
   align-self: center;
 }
+
+.page__auth {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #d8e1e8;
+}

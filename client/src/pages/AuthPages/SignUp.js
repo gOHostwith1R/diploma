@@ -31,6 +31,7 @@ export const SignUpPage = () => {
   const onSubmit = (data) => dispatch(fetchSignUpUser(data));
   return (
     <AuthLayouts>
+      <Title type="page__auth">Онлайн сервис для совместной работы</Title>
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
         <Title type="title__auth">Регистрация</Title>
         <InputWrapper>

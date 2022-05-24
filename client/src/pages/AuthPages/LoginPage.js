@@ -21,6 +21,7 @@ export const LoginPage = () => {
   const onSubmit = (data) => dispatch(fetchLoginUser(data));
   return (
     <AuthLayouts>
+      <Title type="page__auth">Онлайн сервис для совместной работы</Title>
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
         <Title type="title__auth">Вход</Title>
         <Input

@@ -8,6 +8,7 @@ export const Title = ({ children, type }) => (
       title__create: type === "title__create",
       task__title: type === "task__title",
       title__profile: type === "title__profile",
+      page__auth: type === "page__auth",
     })}
   >
     {children}
