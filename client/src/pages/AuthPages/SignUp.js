@@ -32,11 +32,11 @@ export const SignUpPage = () => {
   return (
     <AuthLayouts>
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
-        <Title type="title__auth">Sign Up</Title>
+        <Title type="title__auth">Регистрация</Title>
         <InputWrapper>
           <Input
             control={control}
-            placeholder="Enter the user name"
+            placeholder="Введите имя пользователя"
             name="userName"
           />
           {errors?.userName && <Errors>User name is incorrect</Errors>}
@@ -44,37 +44,29 @@ export const SignUpPage = () => {
         <InputWrapper>
           <Input
             control={control}
-            placeholder="Enter the password"
+            placeholder="Введите пароль"
             name="password"
             type="password"
           />
           {errors?.password && <Errors>Password is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Input
-            control={control}
-            placeholder="Enter the first name"
-            name="firstName"
-          />
+          <Input control={control} placeholder="Ваше имя" name="firstName" />
           {errors?.firstName && <Errors>First name is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Input
-            control={control}
-            placeholder="Enter the last name"
-            name="lastName"
-          />
+          <Input control={control} placeholder="Ваша фамилия" name="lastName" />
           {errors?.lastName && <Errors>Last name is incorrect</Errors>}
         </InputWrapper>
         <InputWrapper>
-          <Input control={control} placeholder="Enter the age" name="age" />
+          <Input control={control} placeholder="Ваш возраст" name="age" />
           {errors?.age && <Errors>Age is incorrect</Errors>}
         </InputWrapper>
         <AuthNavigateWrapper>
           <Button type="submit" classType="auth__button">
-            Sign Up
+            Регистрация
           </Button>
-          <CustomLink path="/login">Login</CustomLink>
+          <CustomLink path="/login">Вход</CustomLink>
         </AuthNavigateWrapper>
       </FormAuth>
     </AuthLayouts>

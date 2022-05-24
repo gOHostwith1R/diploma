@@ -28,24 +28,24 @@ export const CreateTask = () => {
   };
   return (
     <div className="create-task__wrapper">
-      <Title>Create task</Title>
+      <Title>Создание задачи</Title>
       <form onSubmit={handleSubmit(onSubmit)} className="create__form">
         <InputWrapper>
-          <Input control={control} placeholder="Enter the title" name="title" />
+          <Input control={control} placeholder="Заголовок" name="title" />
         </InputWrapper>
         <InputWrapper>
           <TextArea
-            placeholder="Description"
+            placeholder="Описание"
             name="description"
             control={control}
           />
         </InputWrapper>
         <InputWrapper>
-          <Title type="title__create">Enter the type </Title>
+          <Title type="title__create">Введите тип</Title>
           <Select control={control} name="type" />
         </InputWrapper>
         <Button type="submit" classType="create__button">
-          Create
+          Создать
         </Button>
       </form>
     </div>

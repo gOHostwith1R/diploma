@@ -47,10 +47,10 @@ export const TaskPage = () => {
           <TextArea
             name="answer"
             control={control}
-            placeholder="Add the answer..."
+            placeholder="Добавить ответ..."
           />
           <Button type="submit" classType="create__button">
-            Submit
+            Отправить
           </Button>
         </form>
       </div>

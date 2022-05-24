@@ -16,7 +16,7 @@ export const Profile = () => {
   const userTasks = tasks.filter((task) => task.userName === userName);
   return (
     <div className="profile">
-      <Title type="title__profile">Your tasks</Title>
+      <Title type="title__profile">Ваши задачи</Title>
       <TaskWrapper currentTasks={userTasks} />
       {userTasks.length === 0 && <h2>Not found tasks</h2>}
     </div>

@@ -22,16 +22,16 @@ export const LoginPage = () => {
   return (
     <AuthLayouts>
       <FormAuth onSubmit={handleSubmit(onSubmit)}>
-        <Title type="title__auth">Login</Title>
+        <Title type="title__auth">Вход</Title>
         <Input
           control={control}
-          placeholder="Enter the user name"
+          placeholder="Введите имя пользователя"
           name="userName"
         />
         <InputWrapper>
           <Input
             control={control}
-            placeholder="Enter the password"
+            placeholder="Введите пароль"
             name="password"
             type="password"
           />
@@ -39,9 +39,9 @@ export const LoginPage = () => {
         </InputWrapper>
         <AuthNavigateWrapper>
           <Button type="submit" classType="auth__button">
-            Login
+            Вход
           </Button>
-          <CustomLink path="/sign-up">Sign Up</CustomLink>
+          <CustomLink path="/sign-up">Регистрация</CustomLink>
         </AuthNavigateWrapper>
       </FormAuth>
     </AuthLayouts>

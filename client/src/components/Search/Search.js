@@ -1,7 +1,7 @@
 import "./search.styles.css";
 import search from "../../assets/search.png";
 import { Input } from "../Input/Input";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 export const Search = () => {
@@ -22,7 +22,7 @@ export const Search = () => {
   return (
     <div className="search__wrapper">
       <Input
-        placeholder="Search"
+        placeholder="Поиск"
         control={control}
         name="search"
         onKeyPress={onKeyPress}

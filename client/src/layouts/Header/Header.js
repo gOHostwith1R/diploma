@@ -8,13 +8,13 @@ export const Header = () => {
     <header className="header">
       <div className="header__links-wrapper">
         <CustomLink path="/" classType="header__link">
-          Tasks
+          Задачи
         </CustomLink>
         <CustomLink path="/create" classType="header__link">
-          Create Task
+          Создать задачу
         </CustomLink>
         <CustomLink path="/profile" classType="header__link">
-          Profile
+          Профиль
         </CustomLink>
       </div>
       {location.pathname === "/" && <Search />}

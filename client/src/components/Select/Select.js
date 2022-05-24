@@ -8,11 +8,11 @@ export const Select = ({ control, name }) => {
       control={control}
       render={({ field: { onChange } }) => (
         <select onChange={onChange}>
-          <option value="">Please choose an option</option>
-          <option value="mathematics">Mathematics</option>
-          <option value="physics">Physics</option>
-          <option value="programming">Programming</option>
-          <option value="other">Other</option>
+          <option value="">Выберите опцию</option>
+          <option value="Математика">Математика</option>
+          <option value="Физика">Физика</option>
+          <option value="Программирование">Программирование</option>
+          <option value="Другое">Другое</option>
         </select>
       )}
     />
