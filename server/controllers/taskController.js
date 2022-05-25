@@ -25,6 +25,7 @@ class TaskController {
   }
   async addAnswer(req, res, next) {
     const { id: idTask, answer, userName } = req.body;
+    console.log(idTask, answer, userName);
     try {
       const answerTask = await Answer.create({
         idTask,

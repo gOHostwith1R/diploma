@@ -36,7 +36,7 @@ export const LoginPage = () => {
             name="password"
             type="password"
           />
-          {errors && <Errors>{errors}</Errors>}
+          {errors && <Errors>Не правильные данные</Errors>}
         </InputWrapper>
         <AuthNavigateWrapper>
           <Button type="submit" classType="auth__button">

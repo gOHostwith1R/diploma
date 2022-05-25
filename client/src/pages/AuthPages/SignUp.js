@@ -40,7 +40,7 @@ export const SignUpPage = () => {
             placeholder="Введите имя пользователя"
             name="userName"
           />
-          {errors?.userName && <Errors>User name is incorrect</Errors>}
+          {errors?.userName && <Errors>Имя пользователя не подходит</Errors>}
         </InputWrapper>
         <InputWrapper>
           <Input
@@ -49,19 +49,19 @@ export const SignUpPage = () => {
             name="password"
             type="password"
           />
-          {errors?.password && <Errors>Password is incorrect</Errors>}
+          {errors?.password && <Errors>Пароль не подходит</Errors>}
         </InputWrapper>
         <InputWrapper>
           <Input control={control} placeholder="Ваше имя" name="firstName" />
-          {errors?.firstName && <Errors>First name is incorrect</Errors>}
+          {errors?.firstName && <Errors>Имя не должно быть пустым</Errors>}
         </InputWrapper>
         <InputWrapper>
           <Input control={control} placeholder="Ваша фамилия" name="lastName" />
-          {errors?.lastName && <Errors>Last name is incorrect</Errors>}
+          {errors?.lastName && <Errors>Фамилия не должна быть пустой</Errors>}
         </InputWrapper>
         <InputWrapper>
           <Input control={control} placeholder="Ваш возраст" name="age" />
-          {errors?.age && <Errors>Age is incorrect</Errors>}
+          {errors?.age && <Errors>Не коректный возраст</Errors>}
         </InputWrapper>
         <AuthNavigateWrapper>
           <Button type="submit" classType="auth__button">

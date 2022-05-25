@@ -1,5 +1,6 @@
 import "./search.styles.css";
 import search from "../../assets/search.png";
+import { searchTasks } from "../../redux/reducers/taskSlice";
 import { Input } from "../Input/Input";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
