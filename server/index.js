@@ -18,7 +18,6 @@ app.use(
     origin: process.env.CLIENT_URL,
   })
 );
-app.use(express.static(path.resolve(__dirname, "static")));
 app.use("/api", router);
 app.use(errorHandler);
 

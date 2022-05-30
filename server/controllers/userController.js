@@ -41,15 +41,15 @@ class UserController {
     try {
       const { userName, password } = req.body;
       if (!userName && !password) {
-        return next(ApiError.badRequest("Fields are empty"));
+        return next(ApiError.badRequest("Поля пустые"));
       }
       const user = await User.findOne({ where: { userName } });
       if (!user) {
-        return next(ApiError.badRequest("User Name or password incorrect"));
+        return next(ApiError.badRequest("Имя пользователя или пароль не верные"));
       }
       const isCorrectPassword = await bcrypt.compare(password, user.password);
       if (!isCorrectPassword) {
-        return next(ApiError.badRequest("User Name or password incorrect"));
+        return next(ApiError.badRequest("Имя пользователя или пароль не верные"));
       }
       const tokens = TokenService.generateToken({
         userName: user.userName,
@@ -68,11 +68,11 @@ class UserController {
     try {
       const { refreshToken } = req.cookies;
       if (!refreshToken) {
-        return next(ApiError.unauthorizedError("Unauthorized"));
+        return next(ApiError.unauthorizedError("Не авторизован"));
       }
       const checkRefreshToken = TokenService.validateRefreshToken(refreshToken);
       if (!checkRefreshToken) {
-        return next(ApiError.unauthorizedError("Unauthorized"));
+        return next(ApiError.unauthorizedError("Не авторизован"));
       }
       const userData = TokenService.decodeRefreshToken(refreshToken);
       const tokens = TokenService.generateToken({

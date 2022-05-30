@@ -28,6 +28,7 @@ class TokenService {
       return null;
     }
   }
+  
   decodeRefreshToken(token) {
     try {
       return jwt.decode(token, process.env.SECRET_KEY_REFRESH);
